@@ -1,0 +1,36 @@
+<form [formGroup]="campaignForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Campaign Name</label>
+    <input formControlName="name" type="text">
+  </div>
+  <div>
+    <label>Keywords</label>
+    <input formControlName="keywords" type="text" placeholder="Enter keywords">
+  </div>
+  <div>
+    <label>Bid Amount</label>
+    <input formControlName="bidAmount" type="number">
+  </div>
+  <div>
+    <label>Campaign Fund</label>
+    <input formControlName="campaignFund" type="number">
+  </div>
+  <div>
+    <label>Status</label>
+    <select formControlName="status">
+      <option [value]="true">On</option>
+      <option [value]="false">Off</option>
+    </select>
+  </div>
+  <div>
+    <label>Town</label>
+    <select formControlName="town">
+      <option *ngFor="let town of towns" [value]="town">{{ town }}</option>
+    </select>
+  </div>
+  <div>
+    <label>Radius</label>
+    <input formControlName="radius" type="number">
+  </div>
+  <button type="submit" [disabled]="campaignForm.invalid">Submit</button>
+</form>

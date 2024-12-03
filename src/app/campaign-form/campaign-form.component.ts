@@ -1,12 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Campaign } from "../models/campaign.model";
 import { CampaignService } from "../campaign.service";
 
 @Component({
   selector: 'app-campaign-form',
   templateUrl: './campaign-form.component.html',
-  styleUrls: ['./campaign-form.component.scss']
+  styleUrls: ['./campaign-form.component.scss'],
+  standalone: true,
+  imports: [ReactiveFormsModule, ],
 })
 export class CampaignFormComponent implements OnInit
 {
