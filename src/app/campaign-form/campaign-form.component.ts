@@ -30,8 +30,33 @@ export class CampaignFormComponent implements OnInit
     });
   }
 
-  ngOnInit(): void
-  {
-    throw new Error("Method not implemented.");
+  ngOnInit(): void {
+    if (this.campaign) {
+      this.campaignForm.patchValue(this.campaign);
+    }
+  }
+
+  onSubmit(): void {
+    if (this.campaignForm.valid) {
+      const formValues = this.campaignForm.value;
+      const newCampaign = new Campaign(
+        formValues.name,
+        formValues.keywords.split(','),
+        formValues.bidAmount,
+        formValues.campaignFund,
+        formValues.status,
+        formValues.town,
+        formValues.radius
+      );
+
+      if (this.campaign) {
+        const index = this.campaignService.getCampaigns().indexOf(this.campaign);
+        this.campaignService.updateCampaign(index, newCampaign);
+      } else {
+        this.campaignService.createCampaign(newCampaign);
+      }
+      this.formSubmitted.emit();
+      this.campaignForm.reset();
+    }
   }
 }
