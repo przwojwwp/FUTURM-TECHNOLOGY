@@ -5,10 +5,10 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-campaign-list',
-  standalone: true, // Ustawienie na standalone component
-  imports: [CommonModule], // Importowanie CommonModule
+  standalone: true,
   templateUrl: './campaign-list.component.html',
-  styleUrls: ['./campaign-list.component.scss']
+  styleUrls: ['./campaign-list.component.scss'],
+  imports: [CommonModule, CommonModule]
 })
 export class CampaignListComponent implements OnInit {
   campaigns: Campaign[] = [];

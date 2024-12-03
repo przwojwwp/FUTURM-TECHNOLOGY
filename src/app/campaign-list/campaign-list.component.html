@@ -1,17 +1,29 @@
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Keywords</th>
-    <th>Status</th>
-    <th>Actions</th>
-  </tr>
-  <tr *ngFor="let campaign of campaigns; let i = index">
-    <td>{{ campaign.name }}</td>
-    <td>{{ campaign.keywords.join(', ') }}</td>
-    <td>{{ campaign.status ? 'On' : 'Off' }}</td>
-    <td>
-      <button (click)="deleteCampaign(i)">Delete</button>
-      <button (click)="editCampaign(i)">Edit</button>
-    </td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Keywords</th>
+      <th>Bid Amount</th>
+      <th>Campaign Fund</th>
+      <th>Status</th>
+      <th>Town</th>
+      <th>Radius</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let campaign of campaigns; let i = index">
+      <td>{{ campaign.name }}</td>
+      <td>{{ campaign.keywords.join(', ') }}</td>
+      <td>{{ campaign.bidAmount }}</td>
+      <td>{{ campaign.campaignFund }}</td>
+      <td>{{ campaign.status ? 'On' : 'Off' }}</td>
+      <td>{{ campaign.town }}</td>
+      <td>{{ campaign.radius }}</td>
+      <td>
+        <button (click)="deleteCampaign(i)">Delete</button>
+        <button (click)="editCampaign(i)">Edit</button>
+      </td>
+    </tr>
+  </tbody>
 </table>
