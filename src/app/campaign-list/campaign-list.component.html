@@ -1,1 +1,17 @@
-<p>campaign-list works!</p>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Keywords</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let campaign of campaigns; let i = index">
+    <td>{{ campaign.name }}</td>
+    <td>{{ campaign.keywords.join(', ') }}</td>
+    <td>{{ campaign.status ? 'On' : 'Off' }}</td>
+    <td>
+      <button (click)="deleteCampaign(i)">Delete</button>
+      <button (click)="editCampaign(i)">Edit</button>
+    </td>
+  </tr>
+</table>
