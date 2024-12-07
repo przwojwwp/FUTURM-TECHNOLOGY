@@ -1,0 +1,52 @@
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px; /* Zaokrąglenie rogów kontenera tabeli */
+  overflow: auto;   /* Ukrywa zawartość, która wychodzi poza granice zaokrąglonego kontenera */
+  width: 96vw;
+}
+
+table {
+  width: 100%;
+  margin: 16px 0;
+  border-collapse: separate;  /* Zmiana z collapse na separate, aby poprawnie działało zaokrąglenie */
+  border-radius: 8px; /* Zaokrąglenie rogów samej tabeli */
+  overflow: hidden;   /* Ukrywa zawartość, która wychodzi poza granice tabeli */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th.mat-header-cell, td.mat-cell {
+  padding: 8px;
+  text-align: right;
+  background-color: red;
+}
+
+.mat-mdc-table th.mat-mdc-header-cell,
+.mat-mdc-table td.mat-mdc-cell {
+  padding: 8px;
+  text-align: center; /* Wyśrodkowanie tekstu */
+  width: 12.5%;
+
+}
+
+.mat-mdc-table tr:hover {
+  background-color: #f0f0f0; /* Kolor tła przy najechaniu */
+  cursor: pointer;
+}
+
+.mat-mdc-table th {
+  pointer-events: none; /* Wyłącza interakcje (np. hover) na nagłówkach */
+}
+
+/* Stylowanie nagłówków */
+.mat-mdc-table th.mat-mdc-header-cell {
+  font-weight: bold;
+}
+
+.text-green {
+  color: green;
+}
+
+.text-red {
+  color: red;
+}

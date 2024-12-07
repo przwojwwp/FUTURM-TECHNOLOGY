@@ -1,36 +1,82 @@
-<form [formGroup]="campaignForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label>Campaign Name</label>
-    <input formControlName="name" type="text">
-  </div>
-  <div>
-    <label>Keywords</label>
-    <input formControlName="keywords" type="text" placeholder="Enter keywords">
-  </div>
-  <div>
-    <label>Bid Amount</label>
-    <input formControlName="bidAmount" type="number">
-  </div>
-  <div>
-    <label>Campaign Fund</label>
-    <input formControlName="campaignFund" type="number">
-  </div>
-  <div>
-    <label>Status</label>
-    <select formControlName="status">
-      <option [value]="true">On</option>
-      <option [value]="false">Off</option>
-    </select>
-  </div>
-  <div>
-    <label>Town</label>
-    <select formControlName="town">
-      <option *ngFor="let town of towns" [value]="town">{{ town }}</option>
-    </select>
-  </div>
-  <div>
-    <label>Radius</label>
-    <input formControlName="radius" type="number">
-  </div>
-  <button type="submit" [disabled]="campaignForm.invalid">Submit</button>
-</form>
+<section>
+  <form [formGroup]="campaignForm" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+    <div class="form-header">
+      <h2 class="form-caption">Create a New Campaign</h2>
+      <div class="available-funds">
+        <p >Available Funds: <span [ngClass]="{'green-text': availableFunds >= 300, 'red-text': availableFunds < 300}">{{ availableFunds | currency }}</span></p>
+      </div>
+    </div>
+    <!-- Pole Campaign Name -->
+    <mat-form-field>
+      <mat-label>Campaign Name</mat-label>
+      <input matInput formControlName="name" type="text">
+    </mat-form-field>
+
+    <!-- Pole Keywords -->
+    <mat-form-field>
+      <mat-label>Keywords</mat-label>
+      <input
+        matInput
+        formControlName="keywords"
+        [matAutocomplete]="auto"
+        placeholder="separated by commas"
+        (blur)="onBlur('keywords')"
+      >
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="addKeyword($event.option.value)"
+      >
+        <mat-option *ngFor="let keyword of filteredKeywords | async" [value]="keyword">
+          {{ keyword }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <!-- Pozostałe pola formularza -->
+    <mat-form-field>
+      <mat-label>Minimal Bid Amount (1)</mat-label>
+      <input matInput formControlName="bidAmount" type="number">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Minimal Campaign Fund (300)</mat-label>
+      <input matInput formControlName="campaignFund" type="number">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option [value]="true">On</mat-option>
+        <mat-option [value]="false">Off</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Town</mat-label>
+      <mat-select formControlName="town">
+        <mat-option *ngFor="let town of towns" [value]="town">{{ town }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="last-field">
+      <mat-label>Radius</mat-label>
+      <input matInput formControlName="radius" type="number">
+    </mat-form-field>
+
+    <div class="form-buttons">
+      <button
+        mat-raised-button
+        type="submit"
+      >
+        Submit
+      </button>
+
+      <button mat-raised-button *ngIf="showModal" type="button" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button *ngIf="!showModal" type="button" (click)="resetForm()">Reset</button>
+    </div>
+
+    <div *ngIf="showErrorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </form>
+</section>

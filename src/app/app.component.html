@@ -1,6 +1,27 @@
+<!-- app.component.html -->
 <main class="main">
-  <app-campaign-form></app-campaign-form>
-  <app-campaign-list></app-campaign-list>
-</main>
+  <app-campaign-form
+    [campaign]="null"
+    (formSubmitted)="onFormSubmitted($event)"
+    [availableFunds]="availableFunds"
+    >
+  </app-campaign-form>
 
-<router-outlet />
+  <app-campaign-list
+    [campaigns]="campaigns"
+    (campaignSelected)="onCampaignSelected($event)">
+  </app-campaign-list>
+
+  <div *ngIf="showModal" class="modal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <app-campaign-form
+        [showModal]="showModal"
+        (closeModal)="closeModal()"
+        [campaign]="selectedCampaign"
+        (formSubmitted)="onCampaignUpdated($event)"
+        [availableFunds]="availableFunds"
+        [allFunds]="allFunds">>
+      </app-campaign-form>
+    </div>
+  </div>
+</main>

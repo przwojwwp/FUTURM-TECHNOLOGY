@@ -21,3 +21,4 @@ describe('CampaignListComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

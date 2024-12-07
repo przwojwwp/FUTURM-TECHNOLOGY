@@ -1,4 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background-color: transparent;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 2vw 5vw;
+  flex-wrap: wrap;
+}
+
+body::before {
+  content: "";
+  position: fixed; /* Tło przypięte do ekranu */
+  top: 0;
+  left: 0;
+  width: 250vw; /* Pełna szerokość ekranu */
+  height: 250vh; /* Pełna wysokość ekranu */
+  z-index: -1; /* Tło za zawartością */
+  background-image: url('assets/images/background-image.png'); /* Ustawienie obrazu */
+  background-repeat: repeat; /* Powtarzanie obrazka */
+  background-size: 10%; /* Powiększamy przestrzeń dla jednego powtarzanego obrazka */
+  background-position: left top; /* Opcjonalne ustawienie pozycji startowej */
+  transform: translateY(-30%) translateX(-23%) rotate(-20deg); /* Obrót obrazu */
+  transform-origin: center center; /* Obrót wokół środka obrazu */
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
+
+h1 {
+  text-align: center;
+}
+

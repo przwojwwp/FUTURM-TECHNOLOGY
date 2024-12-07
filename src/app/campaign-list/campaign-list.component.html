@@ -1,29 +1,52 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Keywords</th>
-      <th>Bid Amount</th>
-      <th>Campaign Fund</th>
-      <th>Status</th>
-      <th>Town</th>
-      <th>Radius</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let campaign of campaigns; let i = index">
-      <td>{{ campaign.name }}</td>
-      <td>{{ campaign.keywords.join(', ') }}</td>
-      <td>{{ campaign.bidAmount }}</td>
-      <td>{{ campaign.campaignFund }}</td>
-      <td>{{ campaign.status ? 'On' : 'Off' }}</td>
-      <td>{{ campaign.town }}</td>
-      <td>{{ campaign.radius }}</td>
-      <td>
-        <button (click)="deleteCampaign(i)">Delete</button>
-        <button (click)="editCampaign(i)">Edit</button>
+<section class="table-container">
+  <table mat-table [dataSource]="campaigns">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let campaign" (click)="editCampaign(campaign)"> {{ campaign.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="keywords">
+      <th mat-header-cell *matHeaderCellDef> Keywords </th>
+      <td mat-cell *matCellDef="let campaign" (click)="editCampaign(campaign)"> {{ campaign.keywords.join(', ') }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bidAmount">
+      <th mat-header-cell *matHeaderCellDef> Bid Amount </th>
+      <td mat-cell *matCellDef="let campaign" (click)="editCampaign(campaign)"> {{ campaign.bidAmount }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="campaignFund">
+      <th mat-header-cell *matHeaderCellDef> Campaign Fund </th>
+      <td mat-cell *matCellDef="let campaign" (click)="editCampaign(campaign)"> {{ campaign.campaignFund }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let campaign" (click)="editCampaign(campaign)"
+          [ngClass]="{'text-green': campaign.status, 'text-red': !campaign.status}">
+        {{ campaign.status ? 'On' : 'Off' }}
       </td>
-    </tr>
-  </tbody>
-</table>
+    </ng-container>
+
+    <ng-container matColumnDef="town">
+      <th mat-header-cell *matHeaderCellDef> Town </th>
+      <td mat-cell *matCellDef="let campaign" (click)="editCampaign(campaign)"> {{ campaign.town }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="radius">
+      <th mat-header-cell *matHeaderCellDef> Radius </th>
+      <td mat-cell *matCellDef="let campaign" (click)="editCampaign(campaign)"> {{ campaign.radius }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let campaign; let i = index">
+        <button mat-button (click)="deleteCampaign(i)">Delete</button>
+        <button mat-button (click)="editCampaign(campaign)">Edit</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</section>
