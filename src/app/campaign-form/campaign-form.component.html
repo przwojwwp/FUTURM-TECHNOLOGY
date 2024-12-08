@@ -1,7 +1,7 @@
 <section>
   <form [formGroup]="campaignForm" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
     <div class="form-header">
-      <h2 class="form-caption">Create a New Campaign</h2>
+      <h2 class="form-caption">{{ showModal ? 'Edit Campaign' : 'Create a New Campaign' }}</h2>
       <div class="available-funds">
         <p >Available Funds: <span [ngClass]="{'green-text': availableFunds >= 300, 'red-text': availableFunds < 300}">{{ availableFunds | currency }}</span></p>
       </div>
