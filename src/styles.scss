@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
 
@@ -15,18 +14,18 @@ body {
 
 body::before {
   content: "";
-  position: fixed; /* Tło przypięte do ekranu */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 250vw; /* Pełna szerokość ekranu */
-  height: 250vh; /* Pełna wysokość ekranu */
-  z-index: -1; /* Tło za zawartością */
-  background-image: url('assets/images/background-image.png'); /* Ustawienie obrazu */
-  background-repeat: repeat; /* Powtarzanie obrazka */
-  background-size: 10%; /* Powiększamy przestrzeń dla jednego powtarzanego obrazka */
-  background-position: left top; /* Opcjonalne ustawienie pozycji startowej */
-  transform: translateY(-30%) translateX(-23%) rotate(-20deg); /* Obrót obrazu */
-  transform-origin: center center; /* Obrót wokół środka obrazu */
+  width: 250vw;
+  height: 250vh;
+  z-index: -1;
+  background-image: url('assets/images/background-image.png');
+  background-repeat: repeat;
+  background-size: 10%;
+  background-position: left top;
+  transform: translateY(-30%) translateX(-23%) rotate(-20deg);
+  transform-origin: center center;
 }
 
 app-root {

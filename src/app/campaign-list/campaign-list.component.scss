@@ -1,17 +1,17 @@
 .table-container {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  border-radius: 8px; /* Zaokrąglenie rogów kontenera tabeli */
-  overflow: auto;   /* Ukrywa zawartość, która wychodzi poza granice zaokrąglonego kontenera */
+  border-radius: 8px;
+  overflow: auto;
   width: 96vw;
 }
 
 table {
   width: 100%;
   margin: 16px 0;
-  border-collapse: separate;  /* Zmiana z collapse na separate, aby poprawnie działało zaokrąglenie */
-  border-radius: 8px; /* Zaokrąglenie rogów samej tabeli */
-  overflow: hidden;   /* Ukrywa zawartość, która wychodzi poza granice tabeli */
+  border-collapse: separate;
+  border-radius: 8px;
+  overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -24,21 +24,20 @@ th.mat-header-cell, td.mat-cell {
 .mat-mdc-table th.mat-mdc-header-cell,
 .mat-mdc-table td.mat-mdc-cell {
   padding: 8px;
-  text-align: center; /* Wyśrodkowanie tekstu */
+  text-align: center;
   width: 12.5%;
 
 }
 
 .mat-mdc-table tr:hover {
-  background-color: #f0f0f0; /* Kolor tła przy najechaniu */
+  background-color: #f0f0f0;
   cursor: pointer;
 }
 
 .mat-mdc-table th {
-  pointer-events: none; /* Wyłącza interakcje (np. hover) na nagłówkach */
+  pointer-events: none;
 }
 
-/* Stylowanie nagłówków */
 .mat-mdc-table th.mat-mdc-header-cell {
   font-weight: bold;
 }

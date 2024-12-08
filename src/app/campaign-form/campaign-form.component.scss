@@ -21,7 +21,7 @@ form {
 .form-header {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Pionowe wyśrodkowanie */
+  align-items: center;
   width: 100%;
   margin-bottom: 1rem;
 }
@@ -29,14 +29,14 @@ form {
 .form-caption {
   font-size: 3vw;
   font-weight: bold;
-  margin: 0; /* Usuń marginesy, aby nic nie przeszkadzało w wyrównaniu */
+  margin: 0;
 }
 
 .available-funds {
   font-size: 3vw;
-  margin: 0; /* Usuń margines kontenera */
+  margin: 0;
   display: flex;
-  align-items: center; /* Wyśrodkuj tekst wewnątrz kontenera */
+  align-items: center;
 }
 
 @media (max-width: 576px) {
@@ -54,8 +54,8 @@ form {
 }
 
 .available-funds p {
-  margin: 0; /* Usuń domyślny margines elementu <p> */
-  line-height: 1; /* Dopasowanie wysokości tekstu */
+  margin: 0;
+  line-height: 1;
 }
 
 .form-buttons {
@@ -105,7 +105,7 @@ mat-form-field {
   border-radius: 8px;
   font-size: 18px;
   font-weight: bold;
-  z-index: 1000; /* Upewniamy się, że komunikat jest widoczny na wierzchu */
+  z-index: 1000;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   opacity: 1;
   transition: opacity 0.5s ease-in-out;

@@ -27,13 +27,11 @@ export class AppComponent implements OnInit {
   constructor(private campaignService: CampaignService, private storageService: StorageService) {}
 
   ngOnInit(): void {
-    // Odczytaj kampanie z localStorage
     const storedCampaigns = this.storageService.getItem<Campaign[]>('campaigns');
     if (storedCampaigns) {
       this.campaignService.setCampaigns(storedCampaigns);
     }
 
-    // Subskrybuj zmiany kampanii i aktualizuj localStorage
     this.campaignService.getCampaigns().subscribe(campaigns => {
       this.campaigns = campaigns;
       this.storageService.setItem('campaigns', campaigns);
