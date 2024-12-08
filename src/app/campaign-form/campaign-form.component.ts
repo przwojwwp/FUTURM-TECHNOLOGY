@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { ErrorHandler } from './error-handler';
 
 @Component({
   selector: 'app-campaign-form',
@@ -113,11 +114,15 @@ export class CampaignFormComponent implements OnInit
     this.closeModal.emit();
   }
 
-  onSubmit(form: FormGroupDirective): void
-  {
-    if (this.allFunds + 1 <= this.campaignForm.get('campaignFund')?.value)
-    {
-      this.errorMessage = 'Not enough funds';
+  onSubmit(form: FormGroupDirective): void {
+    const { errorMessage, isValid } = ErrorHandler.handleCampaignErrors(
+      this.campaignForm,
+      this.availableFunds,
+      this.campaign
+    );
+
+    if (!isValid) {
+      this.errorMessage = errorMessage;
       this.showErrorMessage = true;
 
       setTimeout(() => {
@@ -126,41 +131,6 @@ export class CampaignFormComponent implements OnInit
 
       return;
     }
-
-      if (this.campaignForm.invalid) {
-        this.errorMessage = 'All fields are required';
-        this.showErrorMessage = true;
-
-        setTimeout(() => {
-          this.showErrorMessage = false;
-        }, 3000);
-
-        return;
-      }
-
-      if (this.campaignForm.get('bidAmount')?.value > this.campaignForm.get('campaignFund')?.value)
-      {
-        this.errorMessage = 'Campaign Funds must be greater than Minimal Bid';
-        this.showErrorMessage = true;
-
-        setTimeout(() => {
-          this.showErrorMessage = false;
-        }, 3000);
-
-        return;
-      }
-
-      if (this.availableFunds < this.campaignForm.get('campaignFund')?.value) {
-        this.errorMessage = 'Not enough funds to submit the campaign.';
-        this.showErrorMessage = true;
-
-        setTimeout(() => {
-          this.showErrorMessage = false;
-        }, 3000);
-
-        return;
-      }
-
 
     if (this.campaignForm.valid) {
       const formValues = this.campaignForm.value;
@@ -175,7 +145,6 @@ export class CampaignFormComponent implements OnInit
       );
 
       this.formSubmitted.emit(newCampaign);
-
       form.resetForm();
 
       this.filteredKeywords = this.campaignForm.get('keywords')!.valueChanges.pipe(
